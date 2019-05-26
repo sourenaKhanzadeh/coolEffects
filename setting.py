@@ -1,5 +1,7 @@
 import pygame
 from Res.Constants import colors as CC
+from Res.Constants import physics as PS
+import random
 
 # initialize PyGame.py
 pygame.init()
@@ -23,10 +25,3 @@ def updateScreen(bg_color=CC.WHITE):
 # get PyGame pressed keys
 keys = pygame.key.get_pressed()
 
-def updateBg():
-    # if space is pressed then change background color
-    if keys[pygame.K_SPACE]:
-        # change bg_color to red
-        return updateScreen(CC.RED)
-    else:
-        return updateScreen()
