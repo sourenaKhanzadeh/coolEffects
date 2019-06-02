@@ -1,13 +1,15 @@
 from setting import *
 from Res.prefabs.GameObjects.shapes import Circle
+from Res.prefabs.GameObjects.wave import Wave
 
 scene = []
 
 def addScene():
-    for i in range(300):
-        circle = Circle()
-        circle.randomness()
-        scene.append(circle)
+    # for i in range(300):
+    #     circle = Circle()
+    #     circle.randomness()
+    #     scene.append(circle)
+    scene.append(Wave())
 
 
 # initialize scene
