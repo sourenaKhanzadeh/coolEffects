@@ -1,6 +1,7 @@
 from setting import *
 from Res.prefabs.GameObjects.shapes import Circle
 from Res.prefabs.GameObjects.wave import Wave
+from Res.prefabs.GameObjects.grid import Grid
 
 scene = []
 
@@ -9,7 +10,8 @@ def addScene():
     #     circle = Circle()
     #     circle.randomness()
     #     scene.append(circle)
-    scene.append(Wave())
+    # scene.append(Wave())
+    scene.append(Grid(10, 10, width=40, height=40, x=0, y=0))
 
 
 # initialize scene
