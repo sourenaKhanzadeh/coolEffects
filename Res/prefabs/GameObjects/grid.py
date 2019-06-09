@@ -12,33 +12,33 @@ class Grid:
         self.width = width
         self.height = height
         self.w = w
-        # self.grid = [
-        #     [0,0,0,0,0],
-        #     [0,1,0,0,0],
-        #     [0,0,2,0,0],
-        #     [0,0,0,0,0],
-        # ]
+        self.grid = [[random.randint(0, 1) for j in range(row)] for i in range(col)]
+        self.grid[0][1] = 2
+        self.pos = (0, 1)
 
 
     def draw(self):
-        for row in range(self.row):
-            for col in range(self.col):
+        for row in range(len(self.grid)):
+            for col in range(len(self.grid[0])):
                 pygame.draw.rect(screen,
                                  self.color,
                                  (self.x + col* self.margin,
                                   self.y + row * self.margin,
                                   self.width, self.height),
                                  self.w)
-                # if self.grid[row][col] == 1:
-                #     pygame.draw.circle(screen, self.color,
-                #                        (self.x + col* self.margin + self.width//2,
-                #                       self.y + row * self.margin + self.height//2),self.width//3
-                #                      )
-                # if self.grid[row][col] == 2:
-                #     pygame.draw.circle(screen, CC.BLUE,
-                #                        (self.x + col * self.margin + self.width // 2,
-                #                         self.y + row * self.margin + self.height // 2), self.width // 3
-                #                        )
+
+                if self.grid[row][col] == 2:
+                    pygame.draw.rect(screen,
+                                     CC.YELLOW,
+                                     (self.x + col * self.margin,
+                                      self.y + row * self.margin,
+                                      self.width, self.height))
+                if self.grid[row][col] == 1:
+                    pygame.draw.rect(screen,
+                                     CC.BLUE,
+                                     (self.x + col * self.margin,
+                                      self.y + row * self.margin,
+                                      self.width, self.height))
 
     def update(self):
         self.draw()
@@ -46,4 +46,34 @@ class Grid:
 
 
     def move(self):
-        pass
+        keys = pygame.key.get_pressed()
+
+        try:
+            if keys[pygame.K_RIGHT] and self.grid[self.pos[0]][self.pos[1]+1] == 0:
+                self.grid[self.pos[0]][self.pos[1]] = 0
+                self.grid[self.pos[0]][self.pos[1] + 1] = 2
+                self.pos = (self.pos[0],self.pos[1]+1)
+
+
+            if keys[pygame.K_DOWN] and \
+                self.grid[self.pos[0] + 1][self.pos[1]] == 0:
+
+                self.grid[self.pos[0]][self.pos[1]] = 0
+                self.grid[self.pos[0] + 1][self.pos[1]] = 2
+                self.pos = (self.pos[0] + 1, self.pos[1])
+
+
+            if keys[pygame.K_UP] and \
+                            self.grid[self.pos[0] - 1][self.pos[1]] == 0:
+
+                self.grid[self.pos[0]][self.pos[1]] = 0
+                self.grid[self.pos[0] - 1][self.pos[1]] = 2
+                self.pos = (self.pos[0] - 1, self.pos[1])
+
+            if keys[pygame.K_LEFT] and self.grid[self.pos[0]][self.pos[1]-1] == 0:
+                self.grid[self.pos[0]][self.pos[1]] = 0
+                self.grid[self.pos[0]][self.pos[1] - 1] = 2
+                self.pos = (self.pos[0],self.pos[1] - 1)
+
+        except Exception:
+            pass

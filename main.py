@@ -11,7 +11,7 @@ def addScene():
     #     circle.randomness()
     #     scene.append(circle)
     # scene.append(Wave())
-    scene.append(Grid(10, 10, width=40, height=40, x=0, y=0))
+    scene.append(Grid(100, 100, width=6, height=6, x=0, y=0))
 
 
 # initialize scene
@@ -32,7 +32,7 @@ while run:
             run = False
 
     # fill the screen white
-    screen.fill(CC.WHITE)
+    screen.fill(CC.BLACK)
 
     # update scene
     for gameObject in scene:
